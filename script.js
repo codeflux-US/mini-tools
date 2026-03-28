@@ -1,4 +1,4 @@
-let backend = "https://your-backend.onrender.com";
+let backend = "https://mini-tools-kwap.onrender.com";
 
 function showTab(tab) {
   document.querySelectorAll(".tab").forEach(t => t.style.display = "none");
