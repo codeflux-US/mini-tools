@@ -23,7 +23,7 @@ async function loadSite() {
     }
 
     document.getElementById("frame").srcdoc = data.html;
-    document.getElementById("elements").innerText = data.html;
+    document.getElementById("elements").innerContent = data.html;
     document.getElementById("network").innerText =
       "Status: " + data.status;
 
