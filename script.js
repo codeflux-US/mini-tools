@@ -22,16 +22,44 @@ async function loadSite() {
       return;
     }
 
-    document.getElementById("frame").srcdoc = data.html;
-    document.getElementById("elements").innerContent = data.html;
+    // 🖥️ Preview
+    let iframe = document.getElementById("frame");
+    iframe.srcdoc = data.html;
+
+    // 🧱 Elements (FIXED)
+    document.getElementById("elements").textContent = data.html;
+
+    // 🌐 Network
     document.getElementById("network").innerText =
       "Status: " + data.status;
+
+    // 🔥 Element Inspector (click detect)
+    setTimeout(() => {
+      let doc = iframe.contentDocument || iframe.contentWindow.document;
+
+      doc.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        let el = e.target;
+
+        // 🧠 Show details
+        document.getElementById("inspectBox").innerText =
+          "Tag: " + el.tagName +
+          "\nClass: " + el.className +
+          "\nID: " + el.id;
+
+        // 🎯 Highlight element
+        el.style.outline = "2px solid red";
+      });
+    }, 500);
 
   } catch (e) {
     alert("Backend error");
   }
 }
 
+// 💻 JS Console
 function runJS() {
   try {
     let result = eval(document.getElementById("code").value);
