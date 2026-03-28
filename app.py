@@ -40,14 +40,15 @@ def fetch_site():
 
     try:
         res = requests.get(url, timeout=8)
-
+        
         soup = BeautifulSoup(res.text, 'html.parser')
+formatted_html = soup.prettify()
 
         css = [link.get('href') for link in soup.find_all('link')]
         js = [script.get('src') for script in soup.find_all('script')]
 
         return jsonify({
-            "html": res.text,
+            "html": formatted_html,
             "css": css,
             "js": js,
             "status": res.status_code
