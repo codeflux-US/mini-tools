@@ -4,24 +4,36 @@ import requests
 from bs4 import BeautifulSoup
 from flask_cors import CORS
 
+# 🔥 flask-limiter fix
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 app = Flask(__name__)
 
 ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN")
 
 CORS(app)
 
+# ✅ Proper limiter setup
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["10 per minute"]
+)
+
 @app.route('/')
 def home():
     return "Backend Running 🚀"
 
 @app.route('/fetch')
+@limiter.limit("5 per minute")
 def fetch_site():
     url = request.args.get('url')
 
     if not url:
         return jsonify({"error": "URL required"}), 400
 
-    # 🔐 Safe origin check
+    # 🔐 Origin check fix
     origin = request.headers.get("Origin")
     if origin and origin != ALLOWED_ORIGIN:
         return jsonify({"error": "Blocked"}), 403
