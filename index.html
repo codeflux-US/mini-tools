@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mini Tools</title>
+  <title>Mini DevTools</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Mini Tools 🌐</h2>
+<h2>Mini DevTools 🌐</h2>
 
 <input type="text" id="url" placeholder="Enter https://example.com">
 <button onclick="loadSite()">Load</button>
@@ -17,20 +17,30 @@
   <button onclick="showTab('network')">Network</button>
 </div>
 
+<!-- 🌐 Preview -->
 <div id="preview" class="tab">
   <iframe id="frame"></iframe>
 </div>
 
-<div id="elements" class="tab"></div>
+<!-- 🧱 Elements -->
+<div id="elements" class="tab">
+  <pre id="elementsContent"></pre>
+</div>
 
+<!-- 🌐 Network -->
 <div id="network" class="tab"></div>
 
+<!-- 💻 Console -->
 <div class="console">
-  <textarea id="code"></textarea>
+  <textarea id="code" placeholder="Write JS here..."></textarea>
   <button onclick="runJS()">Run JS</button>
   <pre id="output"></pre>
 </div>
 
+<!-- 🔍 Inspector -->
+<div id="inspectBox">Click any element in Preview to inspect</div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
