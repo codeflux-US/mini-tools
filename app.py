@@ -28,11 +28,12 @@ def fetch_site():
     if not url:
         return jsonify({"error": "URL required"}), 400
 
-    # 🔐 Origin check
     origin = request.headers.get("Origin")
-    if origin != ALLOWED_ORIGIN:
-        return jsonify({"error": "Blocked"}), 403
 
+# Allow browser direct access bhi
+if origin and origin != ALLOWED_ORIGIN:
+    return jsonify({"error": "Blocked"}), 403
+    
     try:
         res = requests.get(url, timeout=8)
 
