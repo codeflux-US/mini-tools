@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Tools</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h2>Mini Tools 🌐</h2>
+
+<input type="text" id="url" placeholder="Enter https://example.com">
+<button onclick="loadSite()">Load</button>
+
+<div class="tabs">
+  <button onclick="showTab('preview', this)">Preview</button>
+  <button onclick="showTab('elements', this)">Elements</button>
+  <button onclick="showTab('network', this)">Network</button>
+</div>
+
+<!-- Preview -->
+<div id="preview" class="tab">
+  <iframe id="frame"></iframe>
+</div>
+
+<!-- Elements -->
+<div class="tools">
+  <button onclick="copyCode()">📋 Copy</button>
+  <button onclick="downloadCode()">⬇ Download</button>
+</div>
+
+<div id="elements" class="tab">
+  <pre id="elementsContent"></pre>
+</div>
+
+<!-- Network -->
+<div id="network" class="tab"></div>
+
+<!-- Console -->
+<div class="console">
+  <textarea id="code" placeholder="Write JS here..."></textarea>
+  <button onclick="runJS()">Run JS</button>
+  <pre id="output"></pre>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
